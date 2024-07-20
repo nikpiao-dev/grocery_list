@@ -1,5 +1,6 @@
 import sqlite3
 
+# Connect to the database
 con = sqlite3.connect('groceries.db')
 cur = con.cursor()
 
@@ -33,7 +34,31 @@ groceries = [
     'Oregano',
     'Unsweetened granola',
     'Red kidney beans'
-
 ]
 
-cur.execute('')
+# Sort the list 
+groceries.sort()
+
+
+cur.execute('''
+CREATE TABLE IF NOT EXISTS grocery (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL DEFAULT 'item'
+)
+''')
+
+# Insert items into the table
+
+# cur.executemany('INSERT INTO grocery (name) VALUES (?)', [(item), for item in groceries])
+
+# Commit the changes
+# con.commit()
+
+# Fetch and print items from table
+cur.execute('SELECT * FROM grocery')
+grocery_items = cur.fetchall()
+for item in grocery_items:
+    print(item)
+
+#close the connection (!Important)
+con.close()
