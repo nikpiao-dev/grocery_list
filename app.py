@@ -10,17 +10,5 @@ def index():
     return "<h1>Groceries List</h1>"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
     app.run()
